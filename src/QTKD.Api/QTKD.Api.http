@@ -1,0 +1,21 @@
+@host = http://localhost:5080
+@contractId = 33333333-3333-4333-8333-333333333333
+
+GET {{host}}/api/customers
+Accept: application/json
+
+###
+GET {{host}}/api/contracts/{{contractId}}
+Accept: application/json
+
+### Missing contract: 404 Problem Details
+GET {{host}}/api/contracts/99999999-9999-4999-8999-999999999999
+Accept: application/json
+
+### Malformed UUID: 400 Validation Problem Details
+GET {{host}}/api/contracts/not-a-guid
+Accept: application/json
+
+### Development OpenAPI document
+GET {{host}}/openapi/v1.json
+Accept: application/json
